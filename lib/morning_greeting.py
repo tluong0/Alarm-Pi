@@ -42,7 +42,7 @@ class Greeting:
 	def import_quotes(self):
 
 		try:
-			self.quotes = [line for line in open('/home/pi/alarmpi/lib/morning_quotes.csv')]
+			self.quotes = [line for line in open('/home/pi/Alarm-Pi2/lib/morning_quotes.csv')]
 		except:
 			self.quotes = False
 			print '\nERROR while importing quotes!\n'

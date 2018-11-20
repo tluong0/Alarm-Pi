@@ -39,8 +39,6 @@ class Alarmpi:
 				tune,
 				voice_female,
 				voice_male,
-				ivona_auth,
-				ivona_auth_secret,
 				weather,
 				weather_auth,
 				city,
@@ -66,11 +64,11 @@ class Alarmpi:
 						'technological news': tech_news, 
 						'scientific news': science_news	}
 		self.greet = Greeting(owner = self.owner)
-		self.start_bonni(ivona_auth, ivona_auth_secret, voice_female, voice_male)
+		self.start_bonni(voice_female, voice_male)
 		self.get_weather(weather_auth, city, country_code)
 		self.get_news(country_code)
 
-	def start_bonni(self, ivona_auth, ivona_auth_secret, voice_female, voice_male):
+	def start_bonni(self, voice_female, voice_male):
 
 		# --- creates Bonni for talking ---
 
@@ -288,7 +286,7 @@ class Alarmpi:
 	def choose_from_dir(self, path, end):
 
 		# --- choses random file from path that ends in 'whatever' ---
-
+               
 		return random.choice([file for file in os.listdir(path) if file.endswith(end)])
 
 	def news_for_today(self):

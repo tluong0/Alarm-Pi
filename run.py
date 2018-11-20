@@ -49,23 +49,21 @@ Alarmpi(owner = 'your name/nickname',               # name by which it will gree
 
 '''
 
-app_directory = '/home/pi/alarmpi'
+app_directory = '/home/pi/Alarm-Pi2'
 
 def main():
     
     # --- ENTER YOUR PERSONAL CREDENTIALS BELLOW ---
 
-    alarmpi = Alarmpi(  owner = 'Your name',
+    alarmpi = Alarmpi(  owner = 'Ian',
                         app_dir = app_directory,
-                        tune = False,
-                        voice_female = True,
+                        tune = True,
+                        voice_female = 'Joanna',
                         voice_male = False,
-                        ivona_auth = 'auth',
-                        ivona_auth_secret = 'auth_secret',
                         weather = True,
-                            weather_auth='auth',
-                            city='London',
-                            country_code='uk',
+                            weather_auth='236adfa20ec34eb04cdfbacfabf9b5e0',
+                            city='New London',
+                            country_code='us',
                         news = False,
                             world_news = False,
                             country_news = True,
@@ -85,7 +83,7 @@ if __name__ == "__main__":
     # --- turn speakers on ---
     
     if 'linux' in platform:
-        os.system(home_directory + '/audio_output/./AUDIO_JACK.sh')
+        os.system(app_directory + '/audio_output/./AUDIO_JACK.sh')
     
     # --- main function ---
     
@@ -95,4 +93,4 @@ if __name__ == "__main__":
     # --- turn speakers off ---
     
     if 'linux' in platform:
-        os.system(home_directory + '/audio_output/./HDMI_out.sh')
+        os.system(app_directory + '/audio_output/./HDMI_out.sh')

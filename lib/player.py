@@ -48,7 +48,8 @@ def choose_tune(path):
 def play_sound(path, sound):
 
 	# --- plays the song / tune ---
-
+        
+	
 	pygame.mixer.init()
 	pygame.mixer.music.load(path + sound)
 	pygame.mixer.music.play()
