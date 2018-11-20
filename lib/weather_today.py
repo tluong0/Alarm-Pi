@@ -35,7 +35,7 @@ class Weather_today:
         self.start_requests()
 
         open_weather = 'http://api.openweathermap.org/data/2.5/weather?q=%s,%s&APPID=%s%s'
-        celcius = '&units=metric'
+        celcius = '&units=imperial'
         format_json = '&format=json'
         self.weather_url = open_weather %(city, country_code, auth, celcius)
         
@@ -154,59 +154,59 @@ class Weather_today:
                         ['with a high of %s and a low of %s', 'reaching a high of %s and a low of %s']))
         temperature = ' '.join(random.choice(options)) %(temp, high, low)
 
-        if temp < 0 and high < 0:
+        if temp < 32 and high < 32:
             state = random.choice(['fhfuhfuh freezing' ,'absolutely freezing', 'very very cold', "colder than a polar bear's butt", 'minus zero'])
             clothes = random.choice(['your warmest clothes', 'three layers of jackets', 'plenty of clothes and gloves', 'all your wardrobe', 'at least 5 scarves'])
             advice = random.choice(["don't you dare catch a cold", 'stay warm', "don't stay outside for too long", 'stay inside like a caveman', 
-                                    "of course, it's hot %s time" %(random.choice(['tea', 'coffee', 'beverage']))])
+                                    "of course, it's hot %s time" %(random.choice(['tea', 'beverage']))])
 
-        if temp in range(0, 4) or (temp < 0 and high > 0):
+        if temp in range(32, 40) or (temp < 32 and high > 32):
             state = random.choice(['colder than a day-old dumpling', 'very cold', 'freezing', 'very very chilly'])
             clothes = random.choice(['warm clothes', 'a big coat', 'plenty of clothes', 'a blanket, but not outside though', 'your scarf'])
             advice = random.choice(["don't catch a cold", 'stay warm', "don't stay outside for too long", 'stay inside', 
-                                    "of course, it's hot %s time" %(random.choice(['tea', 'coffee', 'beverage']))])
+                                    "of course, it's hot %s time" %(random.choice(['tea','beverage']))])
 
-        if temp in range(4, 8):
+        if temp in range(40, 47):
             state = random.choice(['cold', 'pretty cold', 'very chilly'])
             clothes = random.choice(['warm clothes', 'a jacket', 'plenty of clothes', 'a warm jumper', 'your scarf'])
             advice = random.choice(['cover your chest', 'stay warm', "don't stay out in the cold", 'stay inside', 
-                                    'make a warm %s' %(random.choice(['tea', 'coffee', 'beverage']))])
+                                    'make a warm %s' %(random.choice(['tea','beverage']))])
 
-        if temp in range(8, 12):
+        if temp in range(47, 54):
             state = random.choice(['chilly', 'a bit cold', 'mildly cold', 'cold ish'])
             clothes = random.choice(['warm clothes', 'a jacket', 'something warm', 'a warm sweater'])
             advice = random.choice(['cover your chest', 'take care', "don't stay out too long", 'hope it gets warmer', 
-                                    'make a warm %s' %(random.choice(['tea', 'coffee', 'beverage']))])
+                                    'make a warm %s' %(random.choice(['tea', 'beverage']))])
 
-        if temp in range(12, 16):
+        if temp in range(54, 60):
             state = random.choice(['chilly but okay', 'mild', 'pretty mild'])
             clothes = random.choice(['a jumper and a jacket', 'a thin jacket', 'spring clothes', 'a jumper'])
             advice = random.choice(['cover your chest', 'stay warm', "don't stay out in the cold", 'stay inside', 
-                                    'make a warm %s' %(random.choice(['tea', 'coffee', 'beverage']))])
+                                    'make a warm %s' %(random.choice(['tea', 'beverage']))])
 
-        if temp in range(16, 20):
+        if temp in range(60, 68):
             state = random.choice(['kinda warm', 'warm ish', 'a bit warm', 'pleasant'])
             clothes = random.choice(['a shirt or jumper', 'a t-shirt and jacket', 'something loose'])
             advice = random.choice(['enjoy the day', 'get some fresh air', "don't stay inside all day", 'get out there', 
-                                    'make yourself %s' %(random.choice(['tea', 'coffee', 'beverage']))])
+                                    'make yourself %s' %(random.choice(['tea', 'beverage']))])
 
-        if temp in range(20, 24):
+        if temp in range(68, 75):
             state = random.choice(['nice and warm', 'warm', 'very nice', 'pleasant', 'very pleasant'])
             clothes = random.choice(['a shirt', 'a t-shirt', 'something loose', 'something thin'])
             advice = random.choice(['enjoy the day', 'get some fresh air', "don't stay inside all day", 'get out there and enjoy', 
-                                    'make yourself a nice %s' %(random.choice(['tea', 'coffee', 'beverage']))])
+                                    'make yourself a nice %s' %(random.choice(['tea', 'beverage']))])
 
-        if temp in range(24, 34):
+        if temp in range(75, 93):
             state = random.choice(['very warm', 'hot', 'nice and hot', 'pleasantly hot'])
             clothes = random.choice(['a t-shirt or tank top', 'some shorts and a shirt', 'some of that summer clothing', 'summer clothes'])
             advice = random.choice(['enjoy the day', 'get some fresh air', "don't stay inside all day", 'get out there', 
-                                    'make yourself an iced %s' %(random.choice(['tea', 'coffee', 'beverage']))])
+                                    'make yourself an iced %s' %(random.choice(['tea', 'beverage']))])
 
-        if temp > 33:
+        if temp > 93:
             state = random.choice(['very very hot', 'sizzling hot', 'too hot', 'unbearably hot', 'boiling'])
             clothes = random.choice(['nothing but a cap', 'some shorts and a loose t-shirt', 'plenty of sunscreen', "your birthday suit, honestly it's boiling"])
             advice = random.choice(["don't go out if you wanna live", 'get some cold fresh air', 'drink plenty of water', 'hydrate yourself', 
-                                    'make yourself an iced %s' %(random.choice(['tea', 'coffee', 'beverage']))])
+                                    'make yourself an iced %s' %(random.choice(['tea', 'beverage']))])
 
 
         when = random.choice(['now', 'right now', 'at the moment', 'at this time'])

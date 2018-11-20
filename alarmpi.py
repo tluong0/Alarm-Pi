@@ -24,7 +24,7 @@
 import time, random, os, pygame
 from lib.miscellaneous import *
 from lib.player import *
-from lib.vona import Pivona
+from lib.polly import Polly
 from lib.morning_greeting import Greeting
 from lib.weather_today import Weather_today
 from lib.news import Gnews
@@ -90,7 +90,7 @@ class Alarmpi:
 				print 'ERROR, the voice has to be either male or female!'
 				exit()
 
-			self.bonni = Pivona(voice = voice, auth = ivona_auth, auth_secret = ivona_auth_secret)
+			self.bonni = self.bonni = Polly(voice)
 		except:
 			print 'ERROR while creating voice!'
 
