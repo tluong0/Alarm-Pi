@@ -24,7 +24,7 @@
 import random, os
 from player import *
 
-app_home_dir = '/home/pi/alarmpi'
+app_home_dir = '/home/pi/Alarm-Pi2'
 
 class Chances:
 

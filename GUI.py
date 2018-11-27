@@ -1,87 +1,8 @@
-#!/usr/bin/env python
-
-# ___        AlarmPi V 1.1.1 by nickpettican            ___
-# ___   Your smart alarm clock for the Raspberry Pi     ___
-
-# ___        Copyright 2017 Nicolas Pettican            ___
-
-# ___    This software is licensed under the Apache 2   ___
-# ___    license. You may not use this file except in   ___
-# ___    compliance with the License.                   ___
-# ___    You may obtain a copy of the License at        ___
-
-# ___    http://www.apache.org/licenses/LICENSE-2.0     ___
-
-# ___    Unless required by applicable law or agreed    ___
-# ___    to in writing, software distributed under      ___
-# ___    the License is distributed on an "AS IS"       ___
-# ___    BASIS, WITHOUT WARRANTIES OR CONDITIONS OF     ___
-# ___    ANY KIND, either express or implied. See the   ___
-# ___    License for the specific language governing    ___
-# ___    permissions and limitations under the License. ___
-
+import sys
+import time
 from PyQt4 import QtCore, QtGui #PyQt4 is used for designing the GUI
 from time import strftime # To get time from Raspberry pi
-from alarmpi import Alarmpi
-import sys
-from sys import platform
-import random, time, os
 
-'''
-Bellow you can enter your credentials
-in order to personalise your AlarmPi.
-
-Explanation:
-
-Alarmpi(owner = 'your name/nickname',               # name by which it will greet you
-        tune = True or False,                       # enable or disable alarm tune
-        voice_female = True or False or name,       # make the voice female or give specific name
-        voice_male = True or False or name,         # make the voice male or give specific name
-        auth = 'your Ivona auth key',               # Ivona auth key
-        auth_secret = 'your Ivona auth secret',     # Ivona auth secret key
-        weather = True or False,                    # turn weather forecasting on / off
-            weather_auth='your Open Weather auth',  # Open Weather auth code for weather
-            city='London',                          # Your city name
-            country_code='uk',                      # Your country 2 character code
-        news = True or False,                       # turn news telling on / off
-            world_news = True or False,             # enable / disable world news
-            uk_news = True or False,                # enable / disable UK news
-            health_news = True or False,            # enable / disable UK medical news
-            tech_news = True or False,              # enable / disable UK tech news
-            science_news = True or False)           # enable / disable UK science news
-
-'''
-
-app_directory = '/home/pi/Alarm-Pi2'
-
-
-def main():
-    # --- ENTER YOUR PERSONAL CREDENTIALS BELLOW ---
-    global alarmpi
-    alarmpi = Alarmpi(  owner = 'Ian',
-                        app_dir = app_directory,
-                        tune = True,
-                        voice_female = 'Joanna',
-                        voice_male = False,
-                        weather = True,
-                            weather_auth='236adfa20ec34eb04cdfbacfabf9b5e0',
-                            city='New London',
-                            country_code='us',
-                        news = False,
-                            world_news = False,
-                            country_news = True,
-                            health_news = True,
-                            tech_news = True,
-                            science_news = False)
-    
-    if alarmpi.tune:
-        alarmpi.alarm_sound()
-
-    time.sleep(10)
-    
-    alarmpi.main()
-        
-    
 #Code from Qt Designer
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -151,7 +72,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow): #update the GUI window 
         print("Dispay Re-translated")
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow", None))
-        self.label.setText(_translate("MainWindow", "Alarm currently Turned off", None))
+        self.label.setText(_translate("MainWindow", "Alarm curretly Turned off", None))
         self.pushButton.setText(_translate("MainWindow", "Set Alarm", None))
     
     def Time(self): #Function to compare current time with set time 
@@ -159,18 +80,15 @@ class Ui_MainWindow(object):
         self.current_h = int (strftime("%H"))
         self.current_m = int (strftime("%M"))
         if (self.current_h == self.alarm_h) and (self.current_m == self.alarm_m) and ((int(strftime("%S"))%15) == 0): #if the both time match 
+            print("ALARM ON!!!!!")
+            
             message1 = " The time is " + str(self.alarm_h) + " : " + str(self.alarm_m) + " on " + strftime("%A")
             message = "Sir, Good morning.. This is your wake up Alarm." + message1
+  
             self.label.setText(_translate("MainWindow",message1, None)) #display the message on GUI screen  
-##            espeak.synth (message) #speak the message through audio jack
-                # --- turn speakers on ---
-            if 'linux' in platform:
-                os.system(app_directory + '/audio_output/./AUDIO_JACK.sh')
-            main()
-##            time.sleep(5*random.random())
-             # --- turn speakers off ---
-            if 'linux' in platform:
-                os.system(app_directory + '/audio_output/./HDMI_out.sh')
+##            espeak.synth (message) #speak the message through audio jack 
+            time.sleep(1)
+            
             
     def button_pressed(self): #when set alarm button is pressed 
         print("Button Pressed")
@@ -180,32 +98,13 @@ class Ui_MainWindow(object):
         self.alarm_m = int (alarm_time[23:25]) #value of minute is sotred in index value 23 and 24
         message = "Alarm is set at " + str(self.alarm_h) + " hours " + str(self.alarm_m) + " minutes"
         self.label.setText(_translate("MainWindow", message, None)) #display the message on GUI screen  
-##        espeak.synth (message) #speak the message through audio jack 
+        espeak.synth (message) #speak the message through audio jack 
         
-
-
-
-if __name__ == "__main__":
+if __name__ == "__main__": #main function 
     
-
-    
-    # --- main function ---
-##    main()
     app = QtGui.QApplication(sys.argv)
     MainWindow = QtGui.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
-   
-    
-    
-
-    
-
-        
-
-        
-    
-
-    
